@@ -82,7 +82,7 @@ list+="__REFRESH__\t\t\t  🔄 Refresh\n"
 
 # Show rofi menu with selected row highlighted
 choice=$(echo -e "$list" | cut -f4 | rofi -dmenu -i -p "WiFi Networks" \
-    -theme ~/.config/polybar/show-apps.rasi \
+    -theme ~/.config/eww/scripts/show-apps.rasi \
     -theme-str 'window {width: 450px;}' \
     -selected-row "$selected_row")
 
@@ -122,7 +122,7 @@ if [ -n "$SAVED_CONNECTION" ]; then
         notify-send "WiFi" "Connected to $SELECTED_SSID"
     else
         PASSWORD=$(rofi -dmenu -password -p "Password for $SELECTED_SSID" \
-            -theme ~/.config/polybar/show-apps.rasi \
+            -theme ~/.config/eww/scripts/show-apps.rasi \
             -theme-str "window {width: 400px;} entry {placeholder: \"Password for [$SELECTED_SSID]\";}")
         
         if [ -n "$PASSWORD" ]; then
@@ -150,7 +150,7 @@ if [ "$SECURITY" = "--" ]; then
 else
     # New secured network, ask for password
     PASSWORD=$(rofi -dmenu -password -p "Password for $SELECTED_SSID" \
-        -theme ~/.config/polybar/show-apps.rasi \
+        -theme ~/.config/eww/scripts/show-apps.rasi \
         -theme-str "window {width: 400px;} entry {placeholder: \"Password for [$SELECTED_SSID]\";}")
     
     if [ -n "$PASSWORD" ]; then

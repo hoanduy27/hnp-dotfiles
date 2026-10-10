@@ -8,7 +8,7 @@ super + Return
 
 # program launcher
 super + alt + @space
-        rofi -show drun -show-icons -theme ~/.config/polybar/show-apps.rasi
+        rofi -show drun -show-icons -theme ~/.config/eww/scripts/show-apps.rasi
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -187,4 +187,4 @@ super + v
 	~/.local/scripts/clipboard.sh show
 
 super + grave
-        rofi -show window -show-icons -theme ~/.config/polybar/show-apps.rasi
+        rofi -show window -show-icons -theme ~/.config/eww/scripts/show-apps.rasi

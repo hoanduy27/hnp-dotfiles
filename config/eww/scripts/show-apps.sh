@@ -57,7 +57,7 @@
 # current_focus=$(xdotool getwindowfocus)
 
 # # Use rofi to choose with custom keybinding
-# choice=$(echo -e "$list" | cut -f2 | rofi -dmenu -i -p "Running Apps" -theme ~/.config/polybar/show-apps.rasi \
+# choice=$(echo -e "$list" | cut -f2 | rofi -dmenu -i -p "Running Apps" -theme $HOME/.config/eww/scripts/show-apps.rasi \
 #     -kb-custom-1 "Alt-Tab" \
 #     -select-row 0 \
 #     -show-icons \
@@ -79,4 +79,4 @@
 #     wmctrl -i -a "$win_id"
 # fi
 
-rofi -show window -show-icons -theme /home/duy/.config/polybar/show-apps.rasi
+rofi -show window -show-icons -theme $HOME/.config/eww/scripts/show-apps.rasi

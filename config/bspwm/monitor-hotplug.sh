@@ -105,6 +105,6 @@ setup_monitors() {
 
 setup_monitors
 
-if command -v polybar &> /dev/null; then
-    ~/.config/polybar/launch.sh
+if command -v eww &> /dev/null; then
+    ~/.config/eww/launch-eww.sh
 fi
