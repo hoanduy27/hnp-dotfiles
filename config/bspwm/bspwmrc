@@ -50,5 +50,3 @@ bspc rule -a Dmenu state=floating
 
 ibus-daemon -rxRd
 ~/.local/scripts/clipboard.sh monitor &
-# conky is optional (buggy on the Inspiron) — only start it if installed
-command -v conky >/dev/null 2>&1 && conky &
