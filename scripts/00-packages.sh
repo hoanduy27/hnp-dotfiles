@@ -8,7 +8,7 @@ APT_PKGS=(
   # window manager core
   bspwm sxhkd picom rofi dunst feh
   # terminal + input + misc desktop bits
-  kitty conky plank ibus xclip xdotool
+  kitty conky-all plank ibus xclip xdotool
   # screenshots / lock helpers used by sxhkd
   scrot maim slop
   # bar module backends
