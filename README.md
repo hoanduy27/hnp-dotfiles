@@ -35,6 +35,24 @@ git checkout dell-ins5570/debian13-bspwm-eww
 | 02 | `scripts/02-eww.sh`      | build eww from source (X11) via cargo → `~/.local/bin/eww` |
 | 03 | `scripts/03-deploy.sh`   | symlink `config/*` into `~/.config` (backs up existing) |
 
+**Optional onboarding step** (not run automatically — you're prompted for it at
+the end of `./install.sh`, or run it explicitly):
+
+| Step | Script | What it does |
+|------|--------|--------------|
+| 90 | `scripts/90-disable-internal-keyboard.sh` | **permanently** disable the built-in keyboard via GRUB `i8042.nokbd` |
+
+```bash
+./install.sh 90                         # disable forever (prompts, needs sudo)
+bash scripts/90-disable-internal-keyboard.sh status
+bash scripts/90-disable-internal-keyboard.sh enable   # undo
+```
+It edits `GRUB_CMDLINE_LINUX_DEFAULT` (with a timestamped backup) and runs
+`update-grub`, so the internal keyboard is off on every boot while a USB
+keyboard keeps working. Takes effect from kernel load — not the BIOS/boot-menu
+stage (unplug the ribbon for that). This is the permanent counterpart to the
+runtime `config/bspwm/toggle-internal-keyboard.sh`.
+
 Then log out and choose the **bspwm** session (or `bspc wm -r` if already in it).
 
 ## Repo layout
