@@ -30,7 +30,7 @@ git checkout dell-ins5570/debian13-bspwm-eww
 
 | Step | Script | What it does |
 |------|--------|--------------|
-| 00 | `scripts/00-packages.sh` | apt packages (bspwm, picom, cava, playerctl, build deps…) |
+| 00 | `scripts/00-packages.sh` | apt packages — **Xorg + xinit**, bspwm, picom, cava, playerctl, build deps… |
 | 01 | `scripts/01-fonts.sh`    | install bundled Tahoma + Ubuntu Nerd fonts |
 | 02 | `scripts/02-eww.sh`      | build eww from source (X11) via cargo → `~/.local/bin/eww` |
 | 03 | `scripts/03-deploy.sh`   | symlink `config/*` into `~/.config` (backs up existing) |
@@ -53,7 +53,20 @@ keyboard keeps working. Takes effect from kernel load — not the BIOS/boot-menu
 stage (unplug the ribbon for that). This is the permanent counterpart to the
 runtime `config/bspwm/toggle-internal-keyboard.sh`.
 
-Then log out and choose the **bspwm** session (or `bspc wm -r` if already in it).
+### Starting the GUI (from a pure-terminal install)
+
+No display manager is installed by default. After the steps above, launch bspwm
+straight from the TTY:
+
+```bash
+startx          # reads ~/.xinitrc -> exec bspwm (deployed by step 03)
+```
+
+Prefer a graphical login screen? `sudo apt install lightdm` and create a session
+file at `/usr/share/xsessions/bspwm.desktop` pointing `Exec=bspwm`. (Given the
+internal-keyboard spam, `startx` avoids the greeter entirely.)
+
+If already inside bspwm, reload with `bspc wm -r`.
 
 ## Shell (zsh) & editor (nvim)
 

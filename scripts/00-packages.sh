@@ -3,6 +3,8 @@
 source "$(dirname "${BASH_SOURCE[0]}")/lib.sh"
 
 APT_PKGS=(
+  # X server + session glue (needed on a pure-terminal install — no DE yet)
+  xorg xinit x11-xserver-utils xserver-xorg-input-libinput
   # window manager core
   bspwm sxhkd picom rofi dunst feh
   # terminal + input + misc desktop bits
@@ -28,6 +30,9 @@ sudo apt-get install -y "${APT_PKGS[@]}"
 ok "apt packages installed"
 
 warn "Notes:"
+echo "  - No display manager is installed. Start the GUI from the TTY with: startx"
+echo "    (step 03 deploys ~/.xinitrc which execs bspwm). To get a graphical"
+echo "    login screen instead, optionally: sudo apt install lightdm"
 echo "  - 'betterlockscreen' (used by super+x / ctrl+shift+Escape) is not in apt."
 echo "    Install later from https://github.com/betterlockscreen/betterlockscreen if you want lock."
 echo "  - 'xtitle' (optional, nicer window-title module) is not in apt; the eww"

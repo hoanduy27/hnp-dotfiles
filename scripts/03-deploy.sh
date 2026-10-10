@@ -12,6 +12,9 @@ link "$REPO_ROOT/config/picom" "$CFG/picom"
 link "$REPO_ROOT/config/dunst" "$CFG/dunst"
 link "$REPO_ROOT/config/eww"   "$CFG/eww"
 
+# ~/.xinitrc so `startx` launches bspwm (no display manager needed)
+link "$REPO_ROOT/config/x11/xinitrc" "$HOME/.xinitrc"
+
 log "Making scripts executable"
 chmod +x "$REPO_ROOT"/config/bspwm/*.sh \
          "$REPO_ROOT"/config/eww/*.sh \
