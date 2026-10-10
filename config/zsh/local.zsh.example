@@ -1,0 +1,40 @@
+# ~/.config/zsh/local.zsh  — MACHINE-SPECIFIC overrides & SECRETS (NOT in git)
+#
+#   cp local.zsh.example local.zsh   then edit for this machine.
+# local.zsh is gitignored. Only enable the blocks that exist on this host.
+
+# ---- secrets (fill in; never commit) ----
+# alias onats='nats -s nats://nats.iviet.com:4222 --user backend --password REDACTED'
+
+# ---- CUDA (only if this machine has a GPU + CUDA toolkit) ----
+# export CUDA_PATH=/usr/local/cuda
+# export CUDA_HOME=/usr/local/cuda
+# export PATH="$CUDA_HOME/bin:$PATH"
+# export LD_LIBRARY_PATH="$CUDA_HOME/lib64:$LD_LIBRARY_PATH"
+
+# ---- OpenFST headers (speech builds) ----
+# export CPLUS_INCLUDE_PATH="/usr/include/fst:$CPLUS_INCLUDE_PATH"
+# export LIBRARY_PATH="/usr/lib:$LIBRARY_PATH"
+# export LD_LIBRARY_PATH="/usr/lib:$LD_LIBRARY_PATH"
+
+# ---- Go / Istio ----
+# export PATH="$PATH:/usr/local/go/bin:$(go env GOPATH 2>/dev/null)/bin"
+# export PATH="$PATH:$HOME/istio-1.30.0/bin"
+
+# ---- nvm ----
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# ---- pnpm ----
+# export PNPM_HOME="$HOME/.local/share/pnpm"
+# case ":$PATH:" in *":$PNPM_HOME:"*) ;; *) export PATH="$PNPM_HOME:$PATH" ;; esac
+
+# ---- Google Cloud SDK ----
+# [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ] && . "$HOME/google-cloud-sdk/path.zsh.inc"
+# [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ] && . "$HOME/google-cloud-sdk/completion.zsh.inc"
+
+# ---- misc tools ----
+# export PATH="$PATH:$HOME/zrok/bin"
+# export PATH="$HOME/.opencode/bin:$PATH"
+# export NEWT_COLORS=$(<"$HOME/.config/nmtui/palette")

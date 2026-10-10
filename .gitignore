@@ -4,3 +4,8 @@
 *.bak-*
 # runtime temp
 /tmp/
+
+# zsh machine-local (secrets / per-host paths)
+config/zsh/local.zsh
+# nvim runtime state if ever copied in
+config/nvim/.netrwhist
