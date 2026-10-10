@@ -8,7 +8,9 @@ APT_PKGS=(
   # window manager core
   bspwm sxhkd picom rofi dunst feh
   # terminal + input + misc desktop bits
-  kitty conky-all plank ibus xclip xdotool
+  kitty plank ibus xclip xdotool
+  # web browser (forgotten during the Debian netinst tasksel step)
+  firefox-esr
   # screenshots / lock helpers used by sxhkd
   scrot maim slop
   # bar module backends
@@ -33,6 +35,8 @@ warn "Notes:"
 echo "  - No display manager is installed. Start the GUI from the TTY with: startx"
 echo "    (step 03 deploys ~/.xinitrc which execs bspwm). To get a graphical"
 echo "    login screen instead, optionally: sudo apt install lightdm"
+echo "  - conky is OPTIONAL now (buggy on the Inspiron) and not installed by default."
+echo "    bspwmrc only starts it if present. To use it: sudo apt install conky-all"
 echo "  - 'betterlockscreen' (used by super+x / ctrl+shift+Escape) is not in apt."
 echo "    Install later from https://github.com/betterlockscreen/betterlockscreen if you want lock."
 echo "  - 'xtitle' (optional, nicer window-title module) is not in apt; the eww"
