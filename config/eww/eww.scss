@@ -1,0 +1,94 @@
+// ===== palette (from polybar [colors]) =====
+$bg:        #005550;
+$bg-alt:    rgba(0,0,0,0);
+$fg:        #c5c8c6;
+$primary:   #F0C674;
+$secondary: #8ABEB7;
+$focused:   #7AE2CF;   // bspwm focused_border_color
+$urgent:    #df4545;
+$success:   #00a759;
+$warning:   #fffb00;
+$disabled:  #878787;
+
+* {
+  all: unset;
+  font-family: "Tahoma", "Ubuntu Nerd Font", "Noto Sans CJK JP", sans-serif;
+  font-size: 11px;
+}
+
+.bar { background-color: $bg-alt; }
+
+// rounded teal pill around a module group
+.pill {
+  background-color: $bg;
+  color: $fg;
+  border-radius: 11px;
+  padding: 1px 10px;
+  margin: 0 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+}
+
+.mod {
+  padding: 0 7px;
+  color: $fg;
+}
+
+// ---- workspaces ----
+.ws-pill { padding: 1px 6px; }
+.ws {
+  padding: 0 5px;
+  color: $disabled;
+  font-family: "Ubuntu Nerd Font";
+  font-size: 10px;
+}
+.ws.occupied { color: $secondary; }
+.ws.focused  { color: $focused; text-shadow: 0 0 6px $focused; }
+.ws.urgent   { color: $urgent; }
+
+// ---- window title ----
+.window { color: $fg; font-style: italic; margin-left: 6px; }
+
+// ---- clock ----
+.clock { color: $primary; font-weight: bold; }
+
+// ---- notifications ----
+.notif { color: $disabled; font-family: "Ubuntu Nerd Font"; }
+.notif.has { color: $primary; }
+
+// ---- icon buttons ----
+.iconbtn { color: $secondary; font-family: "Ubuntu Nerd Font"; padding: 0 6px; }
+.iconbtn:hover { color: $primary; }
+
+// ---- right cluster readouts ----
+.backlight { color: $warning; }
+.cpu  { color: $secondary; }
+.mem  { color: $primary; }
+.fs   { color: $fg; }
+.wifi.up   { color: $success; }
+.wifi.down { color: $disabled; }
+
+.battery.charging { color: $success; }
+.battery.low { color: $urgent; }
+
+.power { color: $urgent; font-family: "Ubuntu Nerd Font"; padding: 0 6px; }
+.power:hover { color: $warning; }
+
+// ---- bottom bar ----
+.bt.on { color: #5aa2ff; }
+.bt.connected { color: $secondary; }
+.bt.off { color: $disabled; }
+
+.vol { color: $secondary; }
+.vol.muted { color: $disabled; }
+
+.cava {
+  color: $focused;
+  font-family: "Ubuntu Nerd Font", monospace;
+  letter-spacing: 1px;
+  padding: 0 8px;
+}
+
+.nowplaying { color: $primary; font-style: italic; }
+
+// hover affordance on all buttons
+button:hover { background-color: rgba(255,255,255,0.06); border-radius: 8px; }

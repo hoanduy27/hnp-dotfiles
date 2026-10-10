@@ -1,0 +1,25 @@
+configuration {
+  modes: [ combi ];
+  combi-modes: [ window, drun, run ];
+}
+
+@theme "squared-everforest"
+
+entry {
+    placeholder: "Hope to see you back!";
+    cursor-color: rgb(220,20,60);
+}
+
+* {
+  background-color: #2e2e2e17;
+}
+
+window {
+  border-radius: 12px;
+}
+
+element {
+  orientation: horizontal;
+  children: [ element-text, element-icon ];
+  spacing: 5px;
+}

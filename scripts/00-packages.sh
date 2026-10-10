@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# Step 00 — install Debian 13 packages for the bspwm + eww setup.
+source "$(dirname "${BASH_SOURCE[0]}")/lib.sh"
+
+APT_PKGS=(
+  # window manager core
+  bspwm sxhkd picom rofi dunst feh
+  # terminal + input + misc desktop bits
+  kitty conky plank ibus xclip xdotool
+  # screenshots / lock helpers used by sxhkd
+  scrot maim slop
+  # bar module backends
+  cava playerctl brightnessctl
+  pulseaudio-utils pipewire pipewire-pulse wireplumber
+  network-manager bluez
+  # fonts available from apt
+  fonts-noto-cjk
+  # toolchain to build eww from source (X11)
+  build-essential pkg-config
+  libgtk-3-dev libdbusmenu-gtk3-dev libpango1.0-dev
+  libgdk-pixbuf-2.0-dev libcairo2-dev libglib2.0-dev
+  git curl
+)
+
+log "Updating apt and installing ${#APT_PKGS[@]} packages (sudo required)..."
+sudo apt-get update
+sudo apt-get install -y "${APT_PKGS[@]}"
+ok "apt packages installed"
+
+warn "Notes:"
+echo "  - 'betterlockscreen' (used by super+x / ctrl+shift+Escape) is not in apt."
+echo "    Install later from https://github.com/betterlockscreen/betterlockscreen if you want lock."
+echo "  - 'xtitle' (optional, nicer window-title module) is not in apt; the eww"
+echo "    window module falls back to xprop polling without it."

@@ -1,0 +1,6 @@
+# build / cache
+.cache/
+*.log
+*.bak-*
+# runtime temp
+/tmp/
