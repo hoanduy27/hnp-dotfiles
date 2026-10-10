@@ -7,21 +7,21 @@
 ;; =====================================================================
 
 ;; ---------- data sources ----------
-(deflisten workspaces :initial "[]" "${EWW_CONFIG_DIR}/scripts/workspaces.sh")
-(deflisten window     :initial ""   "${EWW_CONFIG_DIR}/scripts/window.sh")
-(deflisten cava       :initial ""   "${EWW_CONFIG_DIR}/scripts/cava-eww.sh")
-(deflisten nowplaying :initial ""   "${EWW_CONFIG_DIR}/scripts/nowplaying.sh")
+(deflisten workspaces :initial "[]" "$HOME/.config/eww/scripts/workspaces.sh")
+(deflisten window     :initial ""   "$HOME/.config/eww/scripts/window.sh")
+(deflisten cava       :initial ""   "$HOME/.config/eww/scripts/cava-eww.sh")
+(deflisten nowplaying :initial ""   "$HOME/.config/eww/scripts/nowplaying.sh")
 
-(defpoll clock     :interval "10s" :initial "" "${EWW_CONFIG_DIR}/scripts/sysinfo.sh date")
-(defpoll cpu       :interval "2s"  :initial "0"  "${EWW_CONFIG_DIR}/scripts/sysinfo.sh cpu")
-(defpoll mem       :interval "3s"  :initial "0"  "${EWW_CONFIG_DIR}/scripts/sysinfo.sh mem")
-(defpoll fs        :interval "30s" :initial "0"  "${EWW_CONFIG_DIR}/scripts/sysinfo.sh fs")
-(defpoll bat       :interval "10s" :initial '{"cap":0,"charging":false,"present":false}' "${EWW_CONFIG_DIR}/scripts/sysinfo.sh bat")
-(defpoll backlight :interval "5s"  :initial "0"  "${EWW_CONFIG_DIR}/scripts/sysinfo.sh backlight")
-(defpoll vol       :interval "1s"  :initial '{"vol":0,"muted":false}' "${EWW_CONFIG_DIR}/scripts/volume.sh get")
-(defpoll wifi      :interval "5s"  :initial '{"icon":"","label":"...","up":false}' "${EWW_CONFIG_DIR}/scripts/net.sh wifi")
-(defpoll bt        :interval "5s"  :initial '{"on":false,"connected":false,"label":"off"}' "${EWW_CONFIG_DIR}/scripts/net.sh bt")
-(defpoll notif     :interval "3s"  :initial "0"  "${EWW_CONFIG_DIR}/scripts/notification.sh")
+(defpoll clock     :interval "10s" :initial "" "$HOME/.config/eww/scripts/sysinfo.sh date")
+(defpoll cpu       :interval "2s"  :initial "0"  "$HOME/.config/eww/scripts/sysinfo.sh cpu")
+(defpoll mem       :interval "3s"  :initial "0"  "$HOME/.config/eww/scripts/sysinfo.sh mem")
+(defpoll fs        :interval "30s" :initial "0"  "$HOME/.config/eww/scripts/sysinfo.sh fs")
+(defpoll bat       :interval "10s" :initial '{"cap":0,"charging":false,"present":false}' "$HOME/.config/eww/scripts/sysinfo.sh bat")
+(defpoll backlight :interval "5s"  :initial "0"  "$HOME/.config/eww/scripts/sysinfo.sh backlight")
+(defpoll vol       :interval "1s"  :initial '{"vol":0,"muted":false}' "$HOME/.config/eww/scripts/volume.sh get")
+(defpoll wifi      :interval "5s"  :initial '{"icon":"","label":"...","up":false}' "$HOME/.config/eww/scripts/net.sh wifi")
+(defpoll bt        :interval "5s"  :initial '{"on":false,"connected":false,"label":"off"}' "$HOME/.config/eww/scripts/net.sh bt")
+(defpoll notif     :interval "3s"  :initial "0"  "$HOME/.config/eww/scripts/notification.sh")
 
 ;; ---------- small widgets ----------
 (defwidget pill [?class]
@@ -39,7 +39,7 @@
   (label :class "mod window" :halign "start" :limit-width 60 :text {window}))
 
 (defwidget clock-w []
-  (button :class "mod clock" :onclick "${EWW_CONFIG_DIR}/scripts/popup-powermenu.sh &"
+  (button :class "mod clock" :onclick "$HOME/.config/eww/scripts/popup-powermenu.sh &"
     "  ${clock}"))
 
 (defwidget notif-w []
@@ -58,7 +58,7 @@
 
 (defwidget wifi-w []
   (button :class "mod wifi ${wifi.up ? "up" : "down"}"
-          :onclick "${EWW_CONFIG_DIR}/scripts/wifi.sh toggle &"
+          :onclick "$HOME/.config/eww/scripts/wifi.sh toggle &"
     "${wifi.icon}  ${wifi.label}"))
 
 (defwidget mem-w [] (box :class "mod mem" :space-evenly false (label :text "") (label :text " ${mem}%")))
@@ -76,18 +76,18 @@
     (label :text " ${bat.cap}%")))
 
 (defwidget power-w []
-  (button :class "mod power" :onclick "${EWW_CONFIG_DIR}/scripts/powermenu.sh &" ""))
+  (button :class "mod power" :onclick "$HOME/.config/eww/scripts/powermenu.sh &" ""))
 
 ;; bottom bar modules
 (defwidget bt-w []
   (button :class "mod bt ${bt.on ? "on" : "off"} ${bt.connected ? "connected" : ""}"
-          :onclick "${EWW_CONFIG_DIR}/scripts/bluetooth.sh toggle &"
+          :onclick "$HOME/.config/eww/scripts/bluetooth.sh toggle &"
     "${bt.on ? "" : ""}  ${bt.label}"))
 
 (defwidget vol-w []
   (button :class "mod vol ${vol.muted ? "muted" : ""}"
-          :onclick "${EWW_CONFIG_DIR}/scripts/volume.sh toggle"
-          :onscroll "${EWW_CONFIG_DIR}/scripts/volume.sh {} >/dev/null"
+          :onclick "$HOME/.config/eww/scripts/volume.sh toggle"
+          :onscroll "$HOME/.config/eww/scripts/volume.sh {} >/dev/null"
     "${vol.muted ? "" : (vol.vol >= 50 ? "" : (vol.vol > 0 ? "" : ""))}  ${vol.vol}%"))
 
 (defwidget cava-w []
@@ -104,7 +104,7 @@
     (pill :class "left-cluster"
       (notif-w)
       (clock-w)
-      (iconbtn :icon "" :tip "settings" :cmd "${EWW_CONFIG_DIR}/scripts/show-apps.sh &")
+      (iconbtn :icon "" :tip "settings" :cmd "$HOME/.config/eww/scripts/show-apps.sh &")
       (iconbtn :icon "" :tip "reload" :cmd "eww reload")
       (iconbtn :icon "" :tip "wallpaper" :cmd "~/.config/bspwm/change_wallpaper.sh &"))
     (pill :class "ws-pill" (workspaces-w))
