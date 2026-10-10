@@ -1,0 +1,23 @@
+# lazygit config (linked to ~/.config/lazygit/config.yml by scripts/03-link-config.sh).
+# Snacks (LazyVim's <leader>gg) layers its colorscheme on top of this file.
+gui:
+  sidePanelWidth: 0.2 # leave more room for side-by-side diffs
+git:
+  # Press | inside lazygit to cycle through these.
+  diffRenderers:
+    - name: side-by-side
+      command: delta --dark --paging=never --side-by-side --line-numbers
+    - name: inline
+      command: delta --dark --paging=never --line-numbers
+    - type: rawGit
+      name: plain git
+keybinding:
+  # ctrl+k = down, ctrl+j = up (your preference; same as in nvim). Arrows and j/k still work.
+  universal:
+    prevItem: [<up>, <ctrl+j>]
+    nextItem: [<down>, <ctrl+k>]
+  commits:
+    # lazygit's defaults put ctrl+j/k on "move commit down/up" (a rebase); keep only alt+arrows
+    # so ctrl+j/k just move the cursor in the commits list too.
+    moveDownCommit: [<alt-down>]
+    moveUpCommit: [<alt-up>]

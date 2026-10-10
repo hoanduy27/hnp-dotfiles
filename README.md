@@ -55,6 +55,44 @@ runtime `config/bspwm/toggle-internal-keyboard.sh`.
 
 Then log out and choose the **bspwm** session (or `bspc wm -r` if already in it).
 
+## Shell (zsh) & editor (nvim)
+
+Added on branch `dell-ins5570/debian13-zsh-nvim` (off the bspwm/eww branch).
+
+**zsh** — oh-my-zsh + starship, split so nothing secret is committed:
+
+| File | Role |
+|------|------|
+| `config/zsh/zshrc` | portable main rc → symlinked to `~/.zshrc` |
+| `config/zsh/aliases.zsh` · `functions.zsh` · `exports.zsh` | portable aliases, k8s/ffmpeg helpers, env |
+| `config/zsh/local.zsh.example` | template for **machine-specific paths + secrets** |
+| `config/starship.toml` | prompt |
+
+> `~/.config/zsh/local.zsh` is **gitignored**. Step 10 seeds it from the example;
+> put your CUDA/gcloud/nvm paths and any credentials (e.g. the `onats` alias)
+> there. The committed tree contains **no secrets** (the NATS password is
+> redacted in the example).
+
+**nvim** — the LazyVim-based config is vendored from `../olli/nvim_migration`
+(`config/nvim/`, `config/lazygit/`, `config/nvim-scripts/mason-install.lua`), so
+this repo is self-contained. Install steps are adapted from that project.
+
+Steps:
+
+| Step | Script | What it does |
+|------|--------|--------------|
+| 10 | `scripts/10-zsh.sh` | zsh + oh-my-zsh + starship; symlink zshrc/zsh dir/starship; seed local.zsh; optional `chsh` |
+| 20 | `scripts/20-neovim.sh` | latest stable Neovim → `~/.local/opt`, link `~/.local/bin/nvim` |
+| 21 | `scripts/21-nvim-tools.sh` | fd · lazygit · delta · tree-sitter → `~/.local/bin` |
+| 22 | `scripts/22-nvim-deploy.sh` | symlink `~/.config/nvim` + lazygit to repo (backs up old state) |
+| 23 | `scripts/23-nvim-bootstrap.sh` | `Lazy! sync` + Mason LSP servers + `health-report.txt` |
+
+```bash
+./install.sh 10            # just zsh
+./install.sh 20 21 22 23   # just neovim
+exec zsh                   # pick up the new shell
+```
+
 ## Repo layout
 
 ```

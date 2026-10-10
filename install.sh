@@ -5,7 +5,9 @@
 #   ./install.sh 02 03      # run only selected steps
 source "$(dirname "${BASH_SOURCE[0]}")/scripts/lib.sh"
 
-STEPS=(00-packages 01-fonts 02-eww 03-deploy)
+STEPS=(00-packages 01-fonts 02-eww 03-deploy
+       10-zsh
+       20-neovim 21-nvim-tools 22-nvim-deploy 23-nvim-bootstrap)
 # Optional steps — never run in "all" mode automatically; offered interactively
 # at the end, or runnable explicitly by name (e.g. ./install.sh 90).
 OPTIONAL=(90-disable-internal-keyboard)
@@ -24,7 +26,7 @@ resolve() {  # map "02" or "02-eww" to a full step name from STEPS+OPTIONAL
 
 cat <<'BANNER'
   hnp-dotfiles — bspwm + eww (Debian 13 / Dell Inspiron 5570)
-  Steps: 00-packages  01-fonts  02-eww(build)  03-deploy(symlinks)
+  Steps: 00-packages 01-fonts 02-eww 03-deploy | 10-zsh | 20..23 neovim
   Optional: 90-disable-internal-keyboard (permanent, via GRUB i8042.nokbd)
 BANNER
 
