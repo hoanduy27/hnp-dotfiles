@@ -68,6 +68,19 @@ install.sh  orchestrator
   `GRUB_CMDLINE_LINUX_DEFAULT` in `/etc/default/grub`, then `sudo update-grub`.
   Use an external USB keyboard. (For a hardware-level fix, unplug the keyboard
   ribbon.)
+- **Runtime toggle** (optional, no reboot): `config/bspwm/toggle-internal-keyboard.sh`
+  disables/enables just the built-in keyboard while keeping a USB one working.
+  ```bash
+  ~/.config/bspwm/toggle-internal-keyboard.sh disable   # off (xinput, no root)
+  ~/.config/bspwm/toggle-internal-keyboard.sh enable
+  ~/.config/bspwm/toggle-internal-keyboard.sh status
+  ~/.config/bspwm/toggle-internal-keyboard.sh           # toggle
+  # kernel-level (survives X restart, needs sudo):
+  ~/.config/bspwm/toggle-internal-keyboard.sh --kernel disable
+  ```
+  Auto-detects `AT Translated Set 2 keyboard`; override with
+  `KBD_NAME="..."` if `xinput list` shows a different name. It's a standalone
+  tool — bind it to a key yourself if you want (sxhkdrc is left unchanged).
 - **Touchpad:** `bspwmrc` remaps a device named `SynPS/2 Synaptics TouchPad`.
   Run `xinput list` and update the name if yours differs.
 - **Wi-Fi (QCA9377 / ath10k):** the `cal-pci`/`precal-pci` firmware warnings are
