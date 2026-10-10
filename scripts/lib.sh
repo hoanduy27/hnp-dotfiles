@@ -33,3 +33,24 @@ link() {
     ln -s "$src" "$dest"
     ok "linked $dest"
 }
+
+# Download & install a Nerd Font from the nerd-fonts releases (no sudo).
+#   install_nerd_font <ReleaseAssetName> <fc-list match>
+#   e.g. install_nerd_font NerdFontsSymbolsOnly "Symbols Nerd Font"
+install_nerd_font() {
+    local asset="$1" match="$2"
+    if fc-list 2>/dev/null | grep -qi "$match"; then ok "$match already installed"; return 0; fi
+    local destdir="$HOME/.local/share/fonts/${asset}"
+    local url="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/${asset}.tar.xz"
+    log "Installing $match (download $asset.tar.xz)"
+    local tmp; tmp="$(mktemp -d)"
+    if curl -fsSL "$url" | tar -xJ -C "$tmp" 2>/dev/null; then
+        mkdir -p "$destdir"
+        find "$tmp" \( -name '*.ttf' -o -name '*.otf' \) -exec cp {} "$destdir/" \;
+        fc-cache -f "$destdir" >/dev/null 2>&1
+        ok "$match -> $destdir"
+    else
+        warn "failed to download $asset from $url"
+    fi
+    rm -rf "$tmp"
+}

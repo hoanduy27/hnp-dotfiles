@@ -12,7 +12,7 @@ $disabled:  #878787;
 
 * {
   all: unset;
-  font-family: "Tahoma", "Ubuntu Nerd Font", "Noto Sans CJK JP", sans-serif;
+  font-family: "Tahoma", "Ubuntu Nerd Font", "Symbols Nerd Font", "Noto Sans CJK JP", sans-serif;
   font-size: 11px;
 }
 
@@ -38,7 +38,7 @@ $disabled:  #878787;
 .ws {
   padding: 0 5px;
   color: $disabled;
-  font-family: "Ubuntu Nerd Font";
+  font-family: "Ubuntu Nerd Font", "Symbols Nerd Font";
   font-size: 10px;
 }
 .ws.occupied { color: $secondary; }
@@ -52,11 +52,11 @@ $disabled:  #878787;
 .clock { color: $primary; font-weight: bold; }
 
 // ---- notifications ----
-.notif { color: $disabled; font-family: "Ubuntu Nerd Font"; }
+.notif { color: $disabled; font-family: "Ubuntu Nerd Font", "Symbols Nerd Font"; }
 .notif.has { color: $primary; }
 
 // ---- icon buttons ----
-.iconbtn { color: $secondary; font-family: "Ubuntu Nerd Font"; padding: 0 6px; }
+.iconbtn { color: $secondary; font-family: "Ubuntu Nerd Font", "Symbols Nerd Font"; padding: 0 6px; }
 .iconbtn:hover { color: $primary; }
 
 // ---- right cluster readouts ----
@@ -70,7 +70,7 @@ $disabled:  #878787;
 .battery.charging { color: $success; }
 .battery.low { color: $urgent; }
 
-.power { color: $urgent; font-family: "Ubuntu Nerd Font"; padding: 0 6px; }
+.power { color: $urgent; font-family: "Ubuntu Nerd Font", "Symbols Nerd Font"; padding: 0 6px; }
 .power:hover { color: $warning; }
 
 // ---- bottom bar ----
@@ -83,7 +83,7 @@ $disabled:  #878787;
 
 .cava {
   color: $focused;
-  font-family: "Ubuntu Nerd Font", monospace;
+  font-family: "Ubuntu Nerd Font", "Symbols Nerd Font", monospace;
   letter-spacing: 1px;
   padding: 0 8px;
 }
