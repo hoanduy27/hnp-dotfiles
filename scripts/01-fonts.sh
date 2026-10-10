@@ -17,3 +17,7 @@ fi
 log "Rebuilding font cache"
 fc-cache -f "$DEST" >/dev/null
 ok "fonts installed; check: fc-list | grep -iE 'tahoma|ubuntu nerd|noto sans cjk jp'"
+
+# Symbols Nerd Font — guarantees the eww bar's icon glyphs render regardless of
+# the primary font (fontconfig/Pango falls back to it for Nerd Font codepoints).
+install_nerd_font NerdFontsSymbolsOnly "Symbols Nerd Font"
