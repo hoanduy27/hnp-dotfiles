@@ -19,10 +19,10 @@ return {
     end,
   },
 
-  -- extra treesitter parsers: drblury.protobuf-vsc, wholroyd.jinja, rainbow-csv, mermaid, shell
+  -- extra treesitter parsers: drblury.protobuf-vsc, wholroyd.jinja, rainbow-csv, shell
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "proto", "jinja", "jinja_inline", "csv", "tsv", "mermaid", "bash", "htmldjango" } },
+    opts = { ensure_installed = { "proto", "jinja", "jinja_inline", "csv", "tsv", "bash", "htmldjango" } },
   },
 
   -- protobuf LSP (buf) + django templates

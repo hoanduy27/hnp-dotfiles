@@ -29,7 +29,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.yaml" }, -- redhat.vscode-yaml (+ k8s/compose/GHA schemas)
     { import = "lazyvim.plugins.extras.lang.docker" }, -- vscode-containers
     { import = "lazyvim.plugins.extras.lang.helm" }, -- vscode-kubernetes-tools
-    { import = "lazyvim.plugins.extras.lang.markdown" }, -- markdown + mermaid preview
+    { import = "lazyvim.plugins.extras.lang.markdown" }, -- markdown (markdown-preview disabled in plugins/work.lua)
     { import = "lazyvim.plugins.extras.lang.tex" }, -- latex-workshop
     { import = "lazyvim.plugins.extras.lang.toml" },
     { import = "lazyvim.plugins.extras.lang.git" },
@@ -46,9 +46,6 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.coding.neogen" }, -- njpwerner.autodocstring
     { import = "lazyvim.plugins.extras.ui.treesitter-context" }, -- editor sticky scroll
 
-    -- AI: Claude Code (Copilot stays off, as in your VS Code)
-    { import = "lazyvim.plugins.extras.ai.claudecode" },
-
     -- your own overrides
     { import = "plugins" },
   },
@@ -57,7 +54,7 @@ require("lazy").setup({
     version = false,
   },
   install = { colorscheme = { "github_dark_high_contrast", "tokyonight", "habamax" } },
-  checker = { enabled = true, notify = false },
+  checker = { enabled = false }, -- work profile: no background update checks; :Lazy update is manual
   performance = {
     rtp = {
       -- "tutor" is intentionally kept enabled: run :Tutor to learn vim
