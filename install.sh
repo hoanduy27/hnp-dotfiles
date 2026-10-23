@@ -5,8 +5,7 @@
 #   ./install.sh 20 22      # run only selected steps
 source "$(dirname "${BASH_SOURCE[0]}")/scripts/lib.sh"
 
-STEPS=(10-zsh
-       20-neovim 21-nvim-lsp 22-lazygit 23-nvim-deploy 24-nvim-bootstrap 25-blink-cmp)
+STEPS=(20-neovim 21-nvim-lsp 22-lazygit 23-nvim-deploy 24-nvim-bootstrap 25-blink-cmp)
 
 run_step() {
     local s="$1"
@@ -21,8 +20,8 @@ resolve() {  # map "20" or "20-neovim" to a full step name from STEPS
 }
 
 cat <<'BANNER'
-  hnp-dotfiles — minimal work profile (zsh + Neovim, plugins only)
-  Steps: 10-zsh | 20..25 neovim
+  hnp-dotfiles — minimal work profile (Neovim, plugins only)
+  Steps: 20..25 neovim
 BANNER
 
 if [ "$#" -gt 0 ]; then
@@ -37,4 +36,4 @@ else
 fi
 
 echo
-ok "Done. Run 'exec zsh' to pick up the new shell."
+ok "Done."
