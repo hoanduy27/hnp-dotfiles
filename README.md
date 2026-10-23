@@ -86,8 +86,9 @@ Added on branch `dell-ins5570/debian13-zsh-nvim` (off the bspwm/eww branch).
 > there. The committed tree contains **no secrets** (the NATS password is
 > redacted in the example).
 
-**nvim** — the LazyVim-based config is vendored from `../olli/nvim_migration`
-(`config/nvim/`, `config/lazygit/`, `config/nvim-scripts/mason-install.lua`), so
+**nvim (minimal work profile)** — plugins only: no Mason/LSP servers, treesitter parser installs,
+blink.cmp binary, Claude/browser/mermaid plugins, or helper-tool downloads (fd/lazygit/delta). The LazyVim-based config is vendored from `../olli/nvim_migration`
+(`config/nvim/`, `config/lazygit/`), so
 this repo is self-contained. Install steps are adapted from that project.
 
 Steps:
@@ -96,9 +97,8 @@ Steps:
 |------|--------|--------------|
 | 10 | `scripts/10-zsh.sh` | zsh + oh-my-zsh + starship; symlink zshrc/zsh dir/starship; seed local.zsh; optional `chsh` |
 | 20 | `scripts/20-neovim.sh` | pinned Neovim (sha256-verified) → `~/.local/opt`, link `~/.local/bin/nvim` |
-| 21 | `scripts/21-nvim-tools.sh` | fd · lazygit · delta · tree-sitter → `~/.local/bin` |
-| 22 | `scripts/22-nvim-deploy.sh` | symlink `~/.config/nvim` + lazygit to repo (backs up old state) |
-| 23 | `scripts/23-nvim-bootstrap.sh` | `Lazy! sync` + Mason LSP servers + `health-report.txt` |
+| 22 | `scripts/22-nvim-deploy.sh` | symlink `~/.config/nvim` to repo (backs up old state) |
+| 23 | `scripts/23-nvim-bootstrap.sh` | `Lazy! restore` (plugins at lockfile commits; no Mason/LSP) + `health-report.txt` |
 
 ```bash
 ./install.sh 10            # just zsh

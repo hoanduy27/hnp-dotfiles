@@ -11,6 +11,13 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     vim.fn.getchar()
     os.exit(1)
   end
+  -- minimal work profile: check out the commit pinned in lazy-lock.json instead of the moving `stable` branch
+  local lock = vim.fn.stdpath("config") .. "/lazy-lock.json"
+  local ok, data = pcall(function() return vim.json.decode(table.concat(vim.fn.readfile(lock), "\n")) end)
+  local pin = ok and data["lazy.nvim"] and data["lazy.nvim"].commit
+  if pin then
+    vim.fn.system({ "git", "-C", lazypath, "checkout", "--quiet", pin })
+  end
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -18,26 +25,9 @@ require("lazy").setup({
   spec = {
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
 
-    -- Extras replacing your VS Code extensions (see README "What maps to what").
-    -- Browse/toggle more at runtime with :LazyExtras.
-
-    -- languages
-    { import = "lazyvim.plugins.extras.lang.python" }, -- ms-python.*, pylance, debugpy
-    { import = "lazyvim.plugins.extras.lang.go" }, -- golang.go
-    { import = "lazyvim.plugins.extras.lang.typescript" },
-    { import = "lazyvim.plugins.extras.lang.json" },
-    { import = "lazyvim.plugins.extras.lang.yaml" }, -- redhat.vscode-yaml (+ k8s/compose/GHA schemas)
-    { import = "lazyvim.plugins.extras.lang.docker" }, -- vscode-containers
-    { import = "lazyvim.plugins.extras.lang.helm" }, -- vscode-kubernetes-tools
-    { import = "lazyvim.plugins.extras.lang.markdown" }, -- markdown (markdown-preview disabled in plugins/work.lua)
-    { import = "lazyvim.plugins.extras.lang.tex" }, -- latex-workshop
-    { import = "lazyvim.plugins.extras.lang.toml" },
-    { import = "lazyvim.plugins.extras.lang.git" },
-    { import = "lazyvim.plugins.extras.lang.sql" }, -- postgres/mysql/sqlite browser (dadbod-ui), <leader>D
-
-    -- debugging / testing
-    { import = "lazyvim.plugins.extras.dap.core" },
-    { import = "lazyvim.plugins.extras.test.core" },
+    -- Minimal work profile: only plugins (Lua/Vimscript) and the plugins they depend on.
+    -- Dropped extras: every lang.* (LSP servers/formatters via Mason), dap.core, test.core,
+    -- lang.sql (DB clients), markdown (markdown-preview). Browse with :LazyExtras.
 
     -- editor
     { import = "lazyvim.plugins.extras.editor.neo-tree" }, -- file tree (on the right, like your sidebar)

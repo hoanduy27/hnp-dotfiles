@@ -7,7 +7,7 @@ source "$(dirname "${BASH_SOURCE[0]}")/scripts/lib.sh"
 
 STEPS=(00-packages 01-fonts 02-eww 03-deploy 30-rofi-themes
        10-zsh
-       20-neovim 21-nvim-tools 22-nvim-deploy 23-nvim-bootstrap)
+       20-neovim 22-nvim-deploy 23-nvim-bootstrap)
 # Optional steps — never run in "all" mode automatically; offered interactively
 # at the end, or runnable explicitly by name (e.g. ./install.sh 90).
 OPTIONAL=(90-disable-internal-keyboard)

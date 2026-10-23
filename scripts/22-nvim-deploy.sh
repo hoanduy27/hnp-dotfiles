@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Step 22 — symlink ~/.config/nvim and lazygit config to the repo (backs up old state).
+# Step 22 — symlink ~/.config/nvim to the repo (backs up old state).
 # Adapted from nvim_migration/scripts/03-link-config.sh.
 source "$(dirname "${BASH_SOURCE[0]}")/lib.sh"
 
@@ -18,6 +18,3 @@ else
     mkdir -p "$HOME/.config"
     ln -s "$src" "$target"; ok "linked $target -> $src"
 fi
-
-# lazygit config (delta diffs)
-link "$REPO_ROOT/config/lazygit/config.yml" "$HOME/.config/lazygit/config.yml"

@@ -1,6 +1,7 @@
--- Language tweaks on top of the LazyVim lang extras enabled in config/lazy.lua
+-- Language tweaks (work profile: no LSP servers, no extra treesitter parsers)
 return {
-  -- latex-workshop: your recipe was lualatex with --shell-escape + synctex
+  -- latex-workshop: your recipe was lualatex with synctex. --shell-escape is dropped in the work profile
+  -- (it lets a .tex file run arbitrary shell commands); add it back per project if you need it.
   -- <localleader>ll compile (continuous), <localleader>lv view, <localleader>lc clean
   {
     "lervag/vimtex",
@@ -10,7 +11,7 @@ return {
       vim.g.vimtex_compiler_method = "latexmk"
       vim.g.vimtex_compiler_latexmk_engines = { _ = "-lualatex" }
       vim.g.vimtex_compiler_latexmk = {
-        options = { "-shell-escape", "-synctex=1", "-interaction=nonstopmode", "-file-line-error" },
+        options = { "-synctex=1", "-interaction=nonstopmode", "-file-line-error" },
       }
       -- sioyek: forward/inverse search + highlights; zathura: search only; else default PDF viewer
       vim.g.vimtex_view_method = vim.fn.executable("sioyek") == 1 and "sioyek"
@@ -18,23 +19,6 @@ return {
         or "general"
     end,
   },
-
-  -- extra treesitter parsers: drblury.protobuf-vsc, wholroyd.jinja, rainbow-csv, shell
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "proto", "jinja", "jinja_inline", "csv", "tsv", "bash", "htmldjango" } },
-  },
-
-  -- protobuf LSP (buf) + django templates
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        buf_ls = {},
-      },
-    },
-  },
-  { "mason-org/mason.nvim", opts = { ensure_installed = { "buf" } } },
 
   -- mechatroner.rainbow-csv / janisdd.vscode-edit-csv: column colors + aligned view
   -- :CsvViewToggle
