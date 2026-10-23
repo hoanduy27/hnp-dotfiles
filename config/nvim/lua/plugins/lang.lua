@@ -1,5 +1,5 @@
 -- Language tweaks (work profile: no extra treesitter parsers; the only LSP server is the
--- OS-packaged Python one, installed by scripts/21-nvim-lsp.sh)
+-- OS-packaged Python one, installed by scripts/21-nvim-apt.sh)
 return {
   -- Python: pylsp from apt (python3-pylsp). Gives go-to-definition, references, hover and completion
   -- (jedi). `mason = false`: Mason is disabled in this profile. Formatting stays basic (gq / =).

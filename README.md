@@ -23,13 +23,13 @@ git checkout work/nvim-company-profile-minimal
 | Step | Script | What it does |
 |------|--------|--------------|
 | 20 | `scripts/20-neovim.sh` | pinned Neovim (sha256-verified) → `~/.local/opt`, link `~/.local/bin/nvim` |
-| 21 | `scripts/21-nvim-lsp.sh` | `apt install python3-pylsp` (Python language server, no Mason) |
+| 21 | `scripts/21-nvim-apt.sh` | `apt install python3-pylsp ripgrep` (Python language server, no Mason; `rg` for grep pickers) |
 | 22 | `scripts/22-lazygit.sh` | pinned lazygit (sha256-verified) → `~/.local/bin`; links its config (`<leader>gg` in nvim) |
 | 23 | `scripts/23-nvim-deploy.sh` | symlink `~/.config/nvim` to repo (backs up old state) |
 | 24 | `scripts/24-nvim-bootstrap.sh` | `Lazy! restore` (plugins at lockfile commits) + `health-report.txt` |
 | 25 | `scripts/25-blink-cmp.sh` | blink.cmp's Rust fuzzy library, pinned release verified by sha256 (blink never downloads it itself) |
 
-Prerequisites (from apt): `git curl`; `ripgrep` is optional (grep pickers).
+Prerequisites (from apt): `git curl`.
 
 ## Editing notes
 

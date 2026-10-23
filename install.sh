@@ -5,7 +5,7 @@
 #   ./install.sh 20 22      # run only selected steps
 source "$(dirname "${BASH_SOURCE[0]}")/scripts/lib.sh"
 
-STEPS=(20-neovim 21-nvim-lsp 22-lazygit 23-nvim-deploy 24-nvim-bootstrap 25-blink-cmp)
+STEPS=(20-neovim 21-nvim-apt 22-lazygit 23-nvim-deploy 24-nvim-bootstrap 25-blink-cmp)
 
 run_step() {
     local s="$1"
