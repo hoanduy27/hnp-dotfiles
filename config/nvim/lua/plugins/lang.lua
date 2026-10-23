@@ -1,5 +1,17 @@
--- Language tweaks (work profile: no LSP servers, no extra treesitter parsers)
+-- Language tweaks (work profile: no extra treesitter parsers; the only LSP server is the
+-- OS-packaged Python one, installed by scripts/21-nvim-lsp.sh)
 return {
+  -- Python: pylsp from apt (python3-pylsp). Gives go-to-definition, references, hover and completion
+  -- (jedi). `mason = false`: Mason is disabled in this profile. Formatting stays basic (gq / =).
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        pylsp = { mason = false },
+      },
+    },
+  },
+
   -- latex-workshop: your recipe was lualatex with synctex. --shell-escape is dropped in the work profile
   -- (it lets a .tex file run arbitrary shell commands); add it back per project if you need it.
   -- <localleader>ll compile (continuous), <localleader>lv view, <localleader>lc clean
