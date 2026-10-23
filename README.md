@@ -17,7 +17,7 @@ that downloads or builds a program beyond pinned, hash-verified installs. Branch
 git clone <your-remote> ~/github/hnp-dotfiles
 cd ~/github/hnp-dotfiles
 git checkout work/nvim-company-profile-minimal
-./install.sh               # all steps, or e.g. ./install.sh 20 21 22 23 24 25
+./install.sh               # all steps, or e.g. ./install.sh 20 21 22 23 24 25 26
 ```
 
 | Step | Script | What it does |
@@ -28,6 +28,7 @@ git checkout work/nvim-company-profile-minimal
 | 23 | `scripts/23-nvim-deploy.sh` | symlink `~/.config/nvim` to repo (backs up old state) |
 | 24 | `scripts/24-nvim-bootstrap.sh` | `Lazy! restore` (plugins at lockfile commits) + `health-report.txt` |
 | 25 | `scripts/25-blink-cmp.sh` | blink.cmp's Rust fuzzy library, pinned release verified by sha256 (blink never downloads it itself) |
+| 26 | `scripts/26-nerd-font.sh` | Symbols Nerd Font (pinned, sha256-verified) → `~/.local/share/fonts`, for Neovim icons |
 
 Prerequisites (from apt): `git curl`.
 
