@@ -95,7 +95,7 @@ Steps:
 | Step | Script | What it does |
 |------|--------|--------------|
 | 10 | `scripts/10-zsh.sh` | zsh + oh-my-zsh + starship; symlink zshrc/zsh dir/starship; seed local.zsh; optional `chsh` |
-| 20 | `scripts/20-neovim.sh` | latest stable Neovim → `~/.local/opt`, link `~/.local/bin/nvim` |
+| 20 | `scripts/20-neovim.sh` | pinned Neovim (sha256-verified) → `~/.local/opt`, link `~/.local/bin/nvim` |
 | 21 | `scripts/21-nvim-tools.sh` | fd · lazygit · delta · tree-sitter → `~/.local/bin` |
 | 22 | `scripts/22-nvim-deploy.sh` | symlink `~/.config/nvim` + lazygit to repo (backs up old state) |
 | 23 | `scripts/23-nvim-bootstrap.sh` | `Lazy! sync` + Mason LSP servers + `health-report.txt` |
