@@ -1,16 +1,13 @@
-# lazygit config (linked to ~/.config/lazygit/config.yml by scripts/03-link-config.sh).
+# lazygit config (linked to ~/.config/lazygit/config.yml by scripts/22-lazygit.sh).
 # Snacks (LazyVim's <leader>gg) layers its colorscheme on top of this file.
 gui:
-  sidePanelWidth: 0.2 # leave more room for side-by-side diffs
+  sidePanelWidth: 0.2
 git:
-  # Press | inside lazygit to cycle through these.
+  # delta (side-by-side diffs) is not installed in the work profile, so plain git diffs only.
   diffRenderers:
-    - name: side-by-side
-      command: delta --dark --paging=never --side-by-side --line-numbers
-    - name: inline
-      command: delta --dark --paging=never --line-numbers
     - type: rawGit
       name: plain git
+
 keybinding:
   # ctrl+k = down, ctrl+j = up (your preference; same as in nvim). Arrows and j/k still work.
   universal:

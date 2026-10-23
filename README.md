@@ -18,8 +18,8 @@ that downloads or builds a program beyond pinned, hash-verified installs. Branch
   `~/.config/zsh/local.zsh` is **gitignored**; step 10 seeds it from the example.
 - **Neovim** — LazyVim-based config in `config/nvim/` (plugins pinned by `lazy-lock.json`):
   no Mason/LSP servers, treesitter parser installs, blink.cmp binary, Claude/browser/mermaid plugins, or
-  helper-tool downloads (fd/lazygit/delta). The one language server is the OS-packaged Python one (`pylsp`).
-- `config/kitty/kitty.conf`, `config/lazygit/config.yml` — optional preferences, not deployed by any step.
+  helper-tool downloads (fd/delta); lazygit is the one pinned, sha256-verified exception. The one language server is the OS-packaged Python one (`pylsp`).
+- `config/lazygit/config.yml` — lazygit preferences (plain git diffs), linked by step 22.
 
 ## Install
 
@@ -27,7 +27,7 @@ that downloads or builds a program beyond pinned, hash-verified installs. Branch
 git clone <your-remote> ~/github/hnp-dotfiles
 cd ~/github/hnp-dotfiles
 git checkout work/nvim-company-profile-minimal
-./install.sh               # all steps, or e.g. ./install.sh 20 21 22 23
+./install.sh               # all steps, or e.g. ./install.sh 20 21 22 23 24
 exec zsh
 ```
 
@@ -36,8 +36,9 @@ exec zsh
 | 10 | `scripts/10-zsh.sh` | zsh + oh-my-zsh + starship; symlink zshrc/zsh dir/starship; seed local.zsh; optional `chsh` |
 | 20 | `scripts/20-neovim.sh` | pinned Neovim (sha256-verified) → `~/.local/opt`, link `~/.local/bin/nvim` |
 | 21 | `scripts/21-nvim-lsp.sh` | `apt install python3-pylsp` (Python language server, no Mason) |
-| 22 | `scripts/22-nvim-deploy.sh` | symlink `~/.config/nvim` to repo (backs up old state) |
-| 23 | `scripts/23-nvim-bootstrap.sh` | `Lazy! restore` (plugins at lockfile commits) + `health-report.txt` |
+| 22 | `scripts/22-lazygit.sh` | pinned lazygit (sha256-verified) → `~/.local/bin`; links its config (`<leader>gg` in nvim) |
+| 23 | `scripts/23-nvim-deploy.sh` | symlink `~/.config/nvim` to repo (backs up old state) |
+| 24 | `scripts/24-nvim-bootstrap.sh` | `Lazy! restore` (plugins at lockfile commits) + `health-report.txt` |
 
 Prerequisites (from apt): `git curl`; `ripgrep` is optional (grep pickers).
 

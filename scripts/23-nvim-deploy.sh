@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Step 22 — symlink ~/.config/nvim to the repo (backs up old state).
+# Step 23 — symlink ~/.config/nvim to the repo (backs up old state).
 # Adapted from nvim_migration/scripts/03-link-config.sh.
 source "$(dirname "${BASH_SOURCE[0]}")/lib.sh"
 
