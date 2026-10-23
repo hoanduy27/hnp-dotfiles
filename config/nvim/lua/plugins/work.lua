@@ -1,6 +1,7 @@
 -- Minimal work-machine profile: only Neovim plugins (Lua/Vimscript) and the plugins they depend on.
 -- Nothing here may download or build a program: no Mason (LSP servers, formatters, debuggers),
--- no treesitter parser installs, no blink.cmp prebuilt binary, no browser/Chrome/npm servers.
+-- no treesitter parser installs, no runtime binary downloads (blink.cmp's library is installed
+-- from a pinned hash by scripts/25-blink-cmp.sh), no browser/Chrome/npm servers.
 --   removed: coder/claudecode.nvim, Browsh, kevalin/mermaid.nvim, mermaid-cli, markdown-preview.nvim
 return {
   -- Mason downloads prebuilt binaries/npm/PyPI packages. LazyVim runs fine without it
@@ -18,12 +19,14 @@ return {
     end,
   },
 
-  -- blink.cmp downloads a prebuilt Rust fuzzy matcher from GitHub releases; use the Lua one.
+  -- blink.cmp: use the Rust fuzzy matcher, but never let the plugin download it at runtime.
+  -- scripts/25-blink-cmp.sh installs the pinned, sha256-verified library; until then (or if it is
+  -- missing) blink falls back to its Lua matcher with a warning.
   {
     "saghen/blink.cmp",
     opts = {
       fuzzy = {
-        implementation = "lua",
+        implementation = "prefer_rust_with_warning",
         prebuilt_binaries = { download = false },
       },
     },

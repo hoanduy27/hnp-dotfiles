@@ -17,7 +17,7 @@ that downloads or builds a program beyond pinned, hash-verified installs. Branch
 
   `~/.config/zsh/local.zsh` is **gitignored**; step 10 seeds it from the example.
 - **Neovim** — LazyVim-based config in `config/nvim/` (plugins pinned by `lazy-lock.json`):
-  no Mason/LSP servers, treesitter parser installs, blink.cmp binary, Claude/browser/mermaid plugins, or
+  no Mason/LSP servers, treesitter parser installs, runtime binary downloads (blink.cmp's matcher is installed by step 25 from a pinned hash), Claude/browser/mermaid plugins, or
   helper-tool downloads (fd/delta); lazygit is the one pinned, sha256-verified exception. The one language server is the OS-packaged Python one (`pylsp`).
 - `config/lazygit/config.yml` — lazygit preferences (plain git diffs), linked by step 22.
 
@@ -27,7 +27,7 @@ that downloads or builds a program beyond pinned, hash-verified installs. Branch
 git clone <your-remote> ~/github/hnp-dotfiles
 cd ~/github/hnp-dotfiles
 git checkout work/nvim-company-profile-minimal
-./install.sh               # all steps, or e.g. ./install.sh 20 21 22 23 24
+./install.sh               # all steps, or e.g. ./install.sh 20 21 22 23 24 25
 exec zsh
 ```
 
@@ -39,6 +39,7 @@ exec zsh
 | 22 | `scripts/22-lazygit.sh` | pinned lazygit (sha256-verified) → `~/.local/bin`; links its config (`<leader>gg` in nvim) |
 | 23 | `scripts/23-nvim-deploy.sh` | symlink `~/.config/nvim` to repo (backs up old state) |
 | 24 | `scripts/24-nvim-bootstrap.sh` | `Lazy! restore` (plugins at lockfile commits) + `health-report.txt` |
+| 25 | `scripts/25-blink-cmp.sh` | blink.cmp's Rust fuzzy library, pinned release verified by sha256 (blink never downloads it itself) |
 
 Prerequisites (from apt): `git curl`; `ripgrep` is optional (grep pickers).
 
