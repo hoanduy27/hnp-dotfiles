@@ -43,23 +43,35 @@ link() {
     ok "linked $dest"
 }
 
-# Download & install a Nerd Font from the nerd-fonts releases (no sudo).
+# Download & install a Nerd Font from a pinned nerd-fonts release (no sudo), verified by sha256.
+# To bump: change NERD_FONTS_VERSION, then update each hash from the release page's asset digests.
 #   install_nerd_font <ReleaseAssetName> <fc-list match>
 #   e.g. install_nerd_font NerdFontsSymbolsOnly "Symbols Nerd Font"
+NERD_FONTS_VERSION=v3.5.1
+nerd_font_sha256() {
+    case "$1" in
+        NerdFontsSymbolsOnly) echo 01172f37db8543edb102e5cb5c64101c9f4686630804d49b419aa07b23a69996 ;;
+        Iosevka)              echo 3b94ea1dc3955756762f977b7677bca671947dd56bc755a6f8465a8e83b5f257 ;;
+        FiraCode)             echo 68e3bd6164864b8b514605bc34e3a87ac401c8c48682fcce6478c70263340207 ;;
+        *) return 1 ;;
+    esac
+}
 install_nerd_font() {
-    local asset="$1" match="$2"
+    local asset="$1" match="$2" sha
     if fc-list 2>/dev/null | grep -qi "$match"; then ok "$match already installed"; return 0; fi
+    sha="$(nerd_font_sha256 "$asset")" || die "no pinned sha256 for Nerd Font '$asset' (add it to nerd_font_sha256 in lib.sh)"
     local destdir="$HOME/.local/share/fonts/${asset}"
-    local url="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/${asset}.tar.xz"
-    log "Installing $match (download $asset.tar.xz)"
+    local url="https://github.com/ryanoasis/nerd-fonts/releases/download/${NERD_FONTS_VERSION}/${asset}.tar.xz"
+    log "Installing $match (download $asset.tar.xz $NERD_FONTS_VERSION)"
     local tmp; tmp="$(mktemp -d)"
-    if curl -fsSL "$url" | tar -xJ -C "$tmp" 2>/dev/null; then
+    fetch_verified "$url" "$sha" "$tmp/font.tar.xz"
+    if tar -xJf "$tmp/font.tar.xz" -C "$tmp"; then
         mkdir -p "$destdir"
         find "$tmp" \( -name '*.ttf' -o -name '*.otf' \) -exec cp {} "$destdir/" \;
         fc-cache -f "$destdir" >/dev/null 2>&1
         ok "$match -> $destdir"
     else
-        warn "failed to download $asset from $url"
+        warn "failed to extract $asset"
     fi
     rm -rf "$tmp"
 }
